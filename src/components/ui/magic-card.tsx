@@ -15,7 +15,7 @@ export function MagicCard({
     children,
     className,
     gradientSize = 200,
-    gradientColor = '#262626',
+    gradientColor = 'rgb(133 77 14 / var(--tw-text-opacity))',
     gradientOpacity = 0.8,
 }: MagicCardProps) {
     const mouseX = useMotionValue(-gradientSize)
@@ -45,7 +45,7 @@ export function MagicCard({
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             className={cn(
-                'group relative flex size-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-neutral-900 border border-slate-200 text-black dark:text-white dark:border-slate-800',
+                'group relative flex size-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-amber-950 border border-slate-200 text-black dark:text-white dark:border-slate-800',
                 className
             )}
         >
