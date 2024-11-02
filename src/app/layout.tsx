@@ -26,10 +26,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='es'>
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
-            >
-                <FlickeringGrid className='z-0 absolute size-full bg-sky-950/80 overflow-hidden' />
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+                <FlickeringGrid className='z-0 fixed size-full bg-yellow-600/80 overflow-hidden' />
                 {children}
             </body>
         </html>
