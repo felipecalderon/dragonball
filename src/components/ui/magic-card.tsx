@@ -11,13 +11,7 @@ export interface MagicCardProps extends React.HTMLAttributes<HTMLDivElement> {
     gradientOpacity?: number
 }
 
-export function MagicCard({
-    children,
-    className,
-    gradientSize = 200,
-    gradientColor = 'rgb(133 77 14 / var(--tw-text-opacity))',
-    gradientOpacity = 0.8,
-}: MagicCardProps) {
+export function MagicCard({ children, className, gradientSize = 200, gradientColor = '#075985', gradientOpacity = 0.8 }: MagicCardProps) {
     const mouseX = useMotionValue(-gradientSize)
     const mouseY = useMotionValue(-gradientSize)
 
@@ -45,11 +39,11 @@ export function MagicCard({
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             className={cn(
-                'group relative flex size-full overflow-hidden rounded-xl bg-neutral-100 dark:bg-amber-950 border border-slate-200 text-black dark:text-white dark:border-slate-800',
+                'group relative flex size-auto min-h-96 overflow-hidden rounded-xl bg-sky-950 border border-amber-800 text-white hover:scale-105 transition-all',
                 className
             )}
         >
-            <div className='relative z-10 w-full'>{children}</div>
+            <div className='relative z-10 flex-1'>{children}</div>
             <motion.div
                 className='pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100'
                 style={{
