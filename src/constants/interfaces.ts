@@ -1,38 +1,39 @@
 export const enum Race {
-    'Saiyan',
-    'Namekian',
-    'Human',
-    'Majin',
-    'Frieza Race',
-    'Jiren Race',
-    'Android',
-    'God',
-    'Angel',
-    'Evil',
-    'Unknown',
-    'Nucleico benigno',
-    'Nucleico',
+    'Saiyan' = 'Saiyan',
+    'Namekian' = 'Namekian',
+    'Human' = 'Human',
+    'Majin' = 'Majin',
+    'Frieza Race' = 'Frieza Race',
+    'Jiren Race' = 'Jiren Race',
+    'Android' = 'Android',
+    'God' = 'God',
+    'Angel' = 'Angel',
+    'Evil' = 'Evil',
+    'Unknown' = 'Unknown',
+    'Nucleico benigno' = 'Nucleico benigno',
+    'Nucleico' = 'Nucleico',
 }
 
 export const enum Gender {
-    'Male',
-    'Female',
-    'Other',
-    'Unknown',
+    'Male' = 'Male',
+    'Female' = 'Female',
+    'Other' = 'Other',
+    'Unknown' = 'Unknown',
 }
 
 export const enum Affiliation {
-    'Z Fighter',
-    'Red Ribbon Army',
-    'Namekian Warrior',
-    'Freelancer',
-    'Army of Frieza',
-    'Other',
-    'Pride Troopers',
-    'Assistant of Vermoud',
-    'Assistant of Beerus',
-    'Villain',
+    'Z Fighter' = 'Z Fighter',
+    'Red Ribbon Army' = 'Red Ribbon Army',
+    'Namekian Warrior' = 'Namekian Warrior',
+    'Freelancer' = 'Freelancer',
+    'Army of Frieza' = 'Army of Frieza',
+    'Other' = 'Other',
+    'Pride Troopers' = 'Pride Troopers',
+    'Assistant of Vermoud' = 'Assistant of Vermoud',
+    'Assistant of Beerus' = 'Assistant of Beerus',
+    'Villain' = 'Villain',
 }
+
 export interface Character {
     id: number
     name: string
