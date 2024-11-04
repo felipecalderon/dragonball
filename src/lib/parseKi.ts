@@ -1,41 +1,54 @@
-export const parseKi = (value: string): number => {
+export const parseKi = (value: string): bigint | null => {
     // Eliminamos espacios adicionales y convertimos la cadena a minúsculas
     const trimmedValue = value.trim().toLowerCase()
 
-    // Definimos las equivalencias para cada sufijo
-    const suffixes: { [key: string]: number } = {
-        thousand: 1_000,
-        million: 1_000_000,
-        billion: 1_000_000_000,
-        trillion: 1_000_000_000_000,
-        quadrillion: 1_000_000_000_000_000,
-        quintillion: 1_000_000_000_000_000_000,
-        sextillion: 1_000_000_000_000_000_000_000,
-        septillion: 1_000_000_000_000_000_000_000_000,
+    // Diccionario de sufijos con valores `bigint`
+    const suffixes: { [key: string]: bigint } = {
+        million: BigInt(1_000_000),
+        billion: BigInt(1_000_000_000),
+        trillion: BigInt(1_000_000_000_000),
+        quadrillion: BigInt(1_000_000_000_000_000),
+        quintillion: BigInt(1_000_000_000_000_000_000),
+        sextillion: BigInt(1_000_000_000_000_000_000_000),
+        septillion: BigInt(1_000_000_000_000_000_000_000_000),
     }
 
     // Expresión regular para capturar el número y el sufijo
-    const regex = /^([\d.]+)\s*(thousand|million|billion|trillion|quadrillion|quintillion|sextillion|septillion)$/i
+    const regex = /^([\d.]+)\s*(million|billion|trillion|quadrillion|quintillion|sextillion|septillion)?$/i
     const match = trimmedValue.match(regex)
 
     if (!match) {
-        const thousandStr = trimmedValue.replace(/\./g, '')
-        // Convertimos la parte numérica a un valor de tipo number
-        const numericValue = parseFloat(thousandStr)
         // Si no hace match con el formato esperado, retornamos null
-        return numericValue
+        return null
     }
 
-    // Extraemos el número y el sufijo
-    let numberPart = match[1]
+    // Extraemos el número y el sufijo (si está presente)
+    const numberPart = match[1]
     const suffix = match[2]
 
-    // Eliminamos los puntos de la parte numérica
-    numberPart = numberPart.replace(/\./g, '')
+    // Convertimos la parte numérica a `bigint`
+    const numericValue = BigInt(Math.floor(parseFloat(numberPart) * 1000)) / BigInt(1000)
 
-    // Convertimos la parte numérica a un valor de tipo number
-    const numericValue = parseFloat(numberPart)
+    // Si no hay sufijo, asumimos que el número está en miles
+    if (!suffix) {
+        return BigInt(parseFloat(numberPart) * 1000)
+    }
 
     // Multiplicamos el número base por el valor del sufijo
     return numericValue * suffixes[suffix]
+}
+
+export const formatKi = (value: bigint | null): string => {
+    // ⁰¹²³⁴⁵⁶⁷⁸⁹
+    if (value === null) return 'Desconocido'
+    if (value < 1_000n) return value.toString()
+    if (value < 1_000_000n) return `10³`
+    if (value < 1_000_000_000n) return `10⁶`
+    if (value < 1_000_000_000_000n) return `10⁹`
+    if (value < 1_000_000_000_000_000n) return `10¹²`
+    if (value < 1_000_000_000_000_000_000n) return `10¹⁵`
+    if (value < 1_000_000_000_000_000_000_000n) return `10¹⁸`
+    if (value < 1_000_000_000_000_000_000_000_000n) return `10²¹`
+    if (value < 1_000_000_000_000_000_000_000_000_000n) return `10²⁴`
+    return `Ilimitado`
 }
