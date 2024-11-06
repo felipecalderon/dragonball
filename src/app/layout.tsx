@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 import FlickeringGrid from '@/components/ui/flickering-grid'
+import PlayButton from '@/components/play-button'
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -27,7 +28,8 @@ export default function RootLayout({
     return (
         <html lang='es'>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
-                <FlickeringGrid className='z-0 fixed size-full bg-yellow-600/80 overflow-hidden' />
+                <PlayButton src='https://res.cloudinary.com/duwncbe8p/video/upload/f_auto:video,q_auto/tid3ql2rqgduqyyizcey' />
+                <FlickeringGrid className='-z-10 fixed size-full bg-yellow-600/80 overflow-hidden' />
                 {children}
             </body>
         </html>
