@@ -8,7 +8,7 @@ export default function FloatingImage({ race }: { race: Race }) {
     const [tempImg, setImg] = useState(race)
     return (
         <Image
-            className='absolute bottom-0 left-0 rounded-full'
+            className='absolute top-0 right-0 rounded-full'
             src={`/icons/races/${tempImg}.jpg`}
             alt={race}
             width={30}
