@@ -2,6 +2,7 @@ import CharacterCard from '@/components/character-card'
 import ShimmerButton from '@/components/ui/shimmer-button'
 import { URL } from '@/constants/config'
 import { Character } from '@/constants/interfaces'
+import Image from 'next/image'
 import Link from 'next/link'
 
 interface ResponseCharacters {
@@ -25,18 +26,20 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
     const isLastPage = characters.meta.currentPage === totalPages
     const nextPage = isLastPage ? totalPages : characters.meta.currentPage + 1
     const prevPage = isFirstPage ? 1 : characters.meta.currentPage - 1
+    // await timeout(20000)
     return (
         <div className='min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
-            <main className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 items-center justify-center place-items-center'>
+            <Image src='/title-db.webp' alt='Imagen dragon ball' className='mx-auto' width={800} height={400} />
+            <main className='z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 items-center justify-center place-items-center'>
                 {characters.items.map((c) => (
                     <CharacterCard key={c.id} character={c} />
                 ))}
             </main>
             <div className='flex justify-center gap-4 mt-3'>
-                <Link href={`/?page=${prevPage}`}>
+                <Link href={`/?page=${prevPage}`} className={`${isFirstPage ? 'opacity-70 pointer-events-none' : ''}`}>
                     <ShimmerButton disabled={isFirstPage}>{'<'} Anterior</ShimmerButton>
                 </Link>
-                <Link href={`/?page=${nextPage}`}>
+                <Link href={`/?page=${nextPage}`} className={`${isLastPage ? 'opacity-70 pointer-events-none' : ''}`}>
                     <ShimmerButton disabled={isLastPage}>Siguiente {'>'}</ShimmerButton>
                 </Link>
             </div>
