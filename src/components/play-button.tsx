@@ -65,16 +65,16 @@ export default function PlayButton({ src }: { src: string }) {
     }
 
     return (
-        <div className='fixed z-50 top-3 right-3 w-32 h-32 flex items-center justify-center'>
+        <div className='fixed z-50 bottom-0 md:top-3 right-3 w-32 h-32 flex items-center justify-center'>
             {notes.map((note, index) => (
                 <MusicNote key={`${index}-${note}`} symbol={note} />
             ))}
             <button
                 onClick={togglePlay}
-                className='w-16 h-16 rounded-full flex items-center justify-center bg-red-700 text-white transition-all duration-300 hover:bg-red-800 z-50'
+                className='w-16 h-16 rounded-full flex items-center justify-center bg-red-700 text-white transition-all duration-300 hover:bg-red-800 z-50 border-2 border-red-400 shadow-lg'
                 aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
             >
-                {isPlaying ? <Music4 className='w-8 h-8 animate-ping -rotate-90 scale-75' /> : <Play className='w-8 h-8' />}
+                {isPlaying ? <Music4 className='w-8 h-8 animate-ping -rotate-45' /> : <Play className='w-8 h-8' />}
             </button>
         </div>
     )
