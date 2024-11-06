@@ -30,7 +30,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ p
     return (
         <div className='min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]'>
             <Image src='/title-db.webp' alt='Imagen dragon ball' className='mx-auto' width={800} height={400} />
-            <main className='z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 items-center justify-center place-items-center'>
+            <main className='z-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 items-center justify-center place-items-center'>
                 {characters.items.map((c) => (
                     <CharacterCard key={c.id} character={c} />
                 ))}
