@@ -34,6 +34,23 @@ export const enum Affiliation {
     'Villain' = 'Villain',
 }
 
+interface Transformation {
+    id: number
+    name: string
+    image: string
+    ki: string
+    deletedAt: null | string
+}
+
+interface OriginPlanet {
+    id: number
+    name: string
+    isDestroyed: boolean
+    description: string
+    image: string
+    deletedAt: null | string
+}
+
 export interface Character {
     id: number
     name: string
@@ -45,5 +62,6 @@ export interface Character {
     image: string
     affiliation: Affiliation
     deletedAt: null | string
-    originPlanet?: string
+    originPlanet?: OriginPlanet
+    transformations?: Transformation[]
 }
